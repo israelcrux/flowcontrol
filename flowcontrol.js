@@ -73,8 +73,12 @@ FlowControl.prototype.taskList = function(items,f,callback,opts){
 		} 
 	}
 
-	for (var i = items.length - 1; i >= 0; i--)
-		f(items[i],verifier,results.length,opts.transport);
+	if(items.length){
+		for (var i = items.length - 1; i >= 0; i--)
+			f(items[i],verifier,results.length,opts.transport);
+	}
+	else
+	 callback(null,[]);
 };
 
 
