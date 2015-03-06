@@ -3,10 +3,6 @@
 * Flow Control !
 * made by @dantaex on March 2014
 *
-* Disclaimer 
-*	I made this in 30 minutes, I was nearly drunk
-*	so don't trust this, I barely tested it.
-*
 * Usage
 *   var fc = require('flowcontrol');
 *   var mylist = [{...},...,{...}];
