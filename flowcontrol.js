@@ -3,6 +3,7 @@
 * Flow Control !
 * made by @dantaex on March 2014
 *
+*
 * Usage
 *   var fc = require('flowcontrol');
 *   var mylist = [{...},...,{...}];
@@ -48,13 +49,13 @@ function FlowControl(){}
 */
 FlowControl.prototype.taskList = function(items,f,callback,opts){
 	var notFinished = items.length,
-		errrors = [],
+		errors = [],
 		results = [];
 
 	opts = opts || { mergeArrayResults : false, transport: {} };
 
 	function verifier(err,data){
-		if(err)	errrors.push(err);	
+		if(err)	errors.push(err);	
 		else if(data){
 			if(data instanceof Array && opts.mergeArrayResults){
 				results = results.concat(data);
@@ -64,7 +65,7 @@ FlowControl.prototype.taskList = function(items,f,callback,opts){
 		} 
 		
 		if( --notFinished == 0 ){
-			if(errrors.length > 0) callback(errors);
+			if(errors.length > 0) callback(errors);
 			else callback(null,results);
 		} 
 	}
@@ -91,18 +92,18 @@ FlowControl.prototype.taskList = function(items,f,callback,opts){
 */
 FlowControl.prototype.taskMap = function(items,f,callback,opts){
 	var notFinished = items.length,
-		errrors = [],
+		errors = [],
 		results = [];
 
 	opts = opts || { transport: {} };
 
 	function wrapper(i,item){
 		f(item,function(err,data){
-			if(err)	errrors.push(err);	
+			if(err)	errors.push(err);	
 			else results[i] = data;
 			
 			if( --notFinished == 0 ){
-				if(errrors.length > 0) callback(errors);
+				if(errors.length > 0) callback(errors);
 				else callback(null,results);
 			} 
 		},results.length,opts.transport);
