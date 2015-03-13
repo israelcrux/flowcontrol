@@ -1,6 +1,3 @@
-flowcontrol
-===========
-
 # Tiny flow control Library for NodeJS
 
 Just 3 useful functions:
